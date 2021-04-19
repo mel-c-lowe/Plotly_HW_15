@@ -13,7 +13,7 @@ function DrawBarGraph(name) {
 
         var sampleDataRaw = samples.filter(samples => samples.id == name);
         var sampleData = sampleDataRaw[0];
-        console.log(sampleData);
+        // console.log(sampleData);
 
         // Get otu_ids and labels (for hover text), and sample_values to plot
         var otu_ids = sampleData.otu_ids;
@@ -58,7 +58,7 @@ function DrawBubbleChart(name) {
 
         var sampleDataRaw = samples.filter(samples => samples.id == name);
         var sampleData = sampleDataRaw[0];
-        console.log(sampleData);
+        // console.log(sampleData);
 
         // Get otu_ids and labels (for hover text), and sample_values to plot
         var otu_ids = sampleData.otu_ids;
@@ -91,20 +91,32 @@ function DrawBubbleChart(name) {
         Plotly.newPlot("bubble", bubbleArray, bubblelayout);
 
     });
-    
-
-
-
-
-
-
-
-
 
 };
 
 function ShowMetaData(name) {
     console.log("Show metadata for " + name)
+
+    d3.json("samples.json").then(data => {
+        // console.log(data);
+
+        // Get access to data for the name given
+        var metadata = data.metadata;
+        // console.log(samples);
+
+        var metadataRaw = metadata.filter(metadata => metadata.id == name);
+        var metadataWorking = metadataRaw[0];
+        console.log(metadataWorking);
+
+        // Get otu_ids and labels (for hover text), and sample_values to plot
+        var otu_ids = metadataWorking.otu_ids;
+        var otu_labels = metadataWorking.otu_labels;
+        var sample_values = metadataWorking.sample_values;
+        // console.log(sample_values);
+
+
+    });
+
 };
 
 function optionChanged(newName) {
