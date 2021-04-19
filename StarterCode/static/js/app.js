@@ -4,9 +4,16 @@ console.log("app.js loaded");
 
 function DrawBarGraph(name) {
     console.log("Draw bargraph for " + name);
-    // data = [{
-    //     x: name.
-    // }]
+    d3.json("samples.json").then(data => {
+        // console.log(data);
+
+        // Get access to sample_values
+        var samples = data.samples;
+        // console.log(samples);
+
+        var sampleData = samples.filter(samples => samples.id == name);
+        console.log(sampleData)
+    });
 };
 
 function DrawBubbleChart(name) {
@@ -35,7 +42,7 @@ function defaultDisplay() {
     var selector = d3.select("#selDataset");
 
     // Read in the data
-    d3.json("samples.json").then(function(data) {
+    d3.json("samples.json").then(data => {
         console.log(data);
 
         var sampleNames = data.names;
