@@ -2,19 +2,29 @@ console.log("app.js loaded");
 
 // Set up stub functions for each chart
 
-function DrawBarGraph() {
-    console.log("Draw barchart")
+function DrawBarGraph(name) {
+    console.log("Draw bargraph for " + name);
+    // data = [{
+    //     x: name.
+    // }]
 };
 
-function DrawBubbleChart() {
-    console.log("Draw bubble chart")
+function DrawBubbleChart(name) {
+    console.log("Draw bubble chart for " + name)
 };
 
-function ShowMetaData() {
-    console.log("Show metadata")
+function ShowMetaData(name) {
+    console.log("Show metadata for " + name)
 };
 
+function optionChanged(newName) {
+    console.log('User selected ' + newName);
 
+    DrawBarGraph(newName);
+    DrawBubbleChart(newName);
+    ShowMetaData(newName);
+
+};
 
 
 // Set up default display
@@ -41,16 +51,16 @@ function defaultDisplay() {
         // Set up default sample name
         var defaultID = sampleNames[0];
         console.log(defaultID)
-    });
 
-    // Set up default bargraph
-    DrawBarGraph();
+        // Set up default bargraph
+        DrawBarGraph(defaultID);
 
-    // Set up default bubblechart
-    DrawBubbleChart();
+        // Set up default bubblechart
+        DrawBubbleChart(defaultID);
 
-    // Set up default metadata
-    ShowMetaData();
+        // Set up default metadata
+        ShowMetaData(defaultID);
+        });
 
 };
 
