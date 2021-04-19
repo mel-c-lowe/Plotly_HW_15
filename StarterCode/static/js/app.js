@@ -7,12 +7,43 @@ function DrawBarGraph(name) {
     d3.json("samples.json").then(data => {
         // console.log(data);
 
-        // Get access to sample_values
+        // Get access to data for the name given
         var samples = data.samples;
         // console.log(samples);
 
-        var sampleData = samples.filter(samples => samples.id == name);
-        console.log(sampleData)
+        var sampleDataRaw = samples.filter(samples => samples.id == name);
+        var sampleData = sampleDataRaw[0];
+        console.log(sampleData);
+
+        // Get otu_ids and labels (for hover text), and sample_values to plot
+        var otu_ids = sampleData.otu_ids;
+        var otu_labels = sampleData.otu_labels;
+        var sample_values = sampleData.sample_values;
+        // console.log(sample_values);
+
+        // Set yticks to top ten bacteria
+        yticks = otu_ids.slice(0, 10).map(otu_id => 'OTU ' + otu_id).reverse();
+
+        // Declare the top ten bacteria data for the bar chart
+        var barData = {
+            x: sample_values.slice(0, 10).reverse(),
+            y: yticks,
+            type: "bar",
+            text: otu_labels.slice(0, 10).reverse(),
+            orientation: "h"
+        };
+
+        // Convert barData to array
+        var barArray = [barData];
+
+        // Establish layout
+        var barlayout = {
+            title: "Top Ten Belly Button Bacteria Cultures Found",
+        };
+
+        // Call plot
+        Plotly.newPlot("bar", barArray, barlayout);
+
     });
 };
 
