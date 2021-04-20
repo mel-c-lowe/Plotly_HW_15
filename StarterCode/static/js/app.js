@@ -4,6 +4,7 @@ console.log("app.js loaded");
 
 function DrawBarGraph(name) {
     console.log("Draw bargraph for " + name);
+    console.log(`Draw bargraph for ${name}`);
     d3.json("samples.json").then(data => {
         // console.log(data);
 
@@ -120,7 +121,8 @@ function ShowMetaData(name) {
         var datapanel = d3.select("#sample-metadata");
         datapanel.html("");
         Object.entries(workingMetadata).forEach(([key, value]) => {
-            datapanel.append("p").text([key, value]);
+            datapanel.append("p").text(key + ": " + value);
+            // datapanel.append("p").text(key + ": " value);
         });
 
 
