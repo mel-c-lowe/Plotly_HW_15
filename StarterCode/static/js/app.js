@@ -94,25 +94,34 @@ function DrawBubbleChart(name) {
 
 };
 
+
 function ShowMetaData(name) {
     console.log("Show metadata for " + name)
 
     d3.json("samples.json").then(data => {
-        // console.log(data);
+        console.log(data);
+
+        // data.forEach(function(bellyButtonSample) {
+        //     console.log(bellyButtonSample);
+        // });
 
         // Get access to data for the name given
         var metadata = data.metadata;
-        // console.log(samples);
+        // console.log(metadata);
 
-        var metadataRaw = metadata.filter(metadata => metadata.id == name);
-        var metadataWorking = metadataRaw[0];
-        console.log(metadataWorking);
+        var metadataRaw = metadata.filter(metadata => metadata.id = name);
+        // console.log(metadataRaw);
+         
+        var workingMetadata = metadataRaw[0];
+        console.log(workingMetadata);
 
-        // Get otu_ids and labels (for hover text), and sample_values to plot
-        var otu_ids = metadataWorking.otu_ids;
-        var otu_labels = metadataWorking.otu_labels;
-        var sample_values = metadataWorking.sample_values;
-        // console.log(sample_values);
+        d3.select("#sample-metadata").text("This is a test");
+
+        var datapanel = d3.select("#sample-metadata");
+        datapanel.html("");
+        Object.entries(workingMetadata).forEach(([key, value]) => {
+            datapanel.append("p").text([key, value]);
+        });
 
 
     });
