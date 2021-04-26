@@ -5,7 +5,7 @@ console.log("app.js loaded");
 function DrawBarGraph(name) {
     console.log("Draw bargraph for " + name);
     console.log(`Draw bargraph for ${name}`);
-    d3.json("samples.json").then(data => {
+    d3.json("static/samples.json").then(data => {
         // console.log(data);
 
         // Get access to data for the name given
@@ -50,7 +50,7 @@ function DrawBarGraph(name) {
 
 function DrawBubbleChart(name) {
     console.log("Draw bubble chart for " + name);
-    d3.json("samples.json").then(data => {
+    d3.json("static/samples.json").then(data => {
         // console.log(data);
 
         // Get access to data for the name given
@@ -83,7 +83,6 @@ function DrawBubbleChart(name) {
 
         // Establish layout
         var bubblelayout = {
-            title: "Title Here",
             showlegend: false,
             width: 1000,
         };
@@ -99,7 +98,7 @@ function DrawBubbleChart(name) {
 function ShowMetaData(name) {
     console.log("Show metadata for " + name)
 
-    d3.json("samples.json").then(data => {
+    d3.json("static/samples.json").then(data => {
         console.log(data);
 
         // data.forEach(function(bellyButtonSample) {
@@ -141,6 +140,7 @@ function optionChanged(newName) {
 
 
 // Set up default display
+// Initial structure derived from office hours demo with Dom on April 17
 function defaultDisplay() {
     console.log("defaultDisplay")
     
@@ -148,7 +148,7 @@ function defaultDisplay() {
     var selector = d3.select("#selDataset");
 
     // Read in the data
-    d3.json("samples.json").then(data => {
+    d3.json("static/samples.json").then(data => {
         console.log(data);
 
         var sampleNames = data.names;
