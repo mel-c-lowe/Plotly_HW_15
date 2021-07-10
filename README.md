@@ -18,4 +18,4 @@ Tools Used:
 
 * Create a bubble chart that also responds to the drop down menu.
 
-* Display the metadat of the sample selected with the drop down menu.
+* Display the metadata of the sample selected with a drop down menu.
